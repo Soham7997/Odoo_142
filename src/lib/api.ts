@@ -51,4 +51,46 @@ export const logout=async () => {
     }
 }
 
+export const uploadfile = async (files:any) => {
+  try {
+    const formData = new FormData();
+    for (let file of files) {
+      formData.append("files", file); // backend expects 'files' key
+    }
+
+    const response = await axios_instance.post("/file/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+
+    console.log("Upload response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Upload failed:", error);
+    throw error;
+  }
+};
+
+export const upload_to_cloudinary=async (files:any) => {
+  try {
+    const formData = new FormData();
+    for (let file of files) {
+      formData.append("files", file); // backend expects 'files' key
+    }
+
+    const response = await axios_instance.post("/file/cloudinary/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+
+    console.log("Upload response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Upload failed:", error);
+    throw error;
+  }
+};
+
 export { axios_instance };

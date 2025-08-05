@@ -8,6 +8,7 @@ import MainPage from "./components/pages/mainpages/MainPage";
 
 
 import { userStore } from "./lib/context";
+import FileUpload from "./components/helpers/FileUpload";
 function App() {
   const user = userStore((state) => state.user);
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/main" />} />
       <Route path="/login" element={!user ? <Login /> : <Navigate to="/main" />} />
       <Route path="/main" element={<MainPage />} />
+      <Route path="/fileupload" element={<FileUpload/>}/>
     </Routes>
   );
 }
