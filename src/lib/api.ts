@@ -11,25 +11,37 @@ interface Signup {
   username: string;
   password: string;
   email: string;
-  role?:string;
+  firstName: string;
+  lastName: string;
+  phone: string; // added to match backend Zod
+  city: string;
+  country?: string;
+  Additional_Information?: string;
 }
 
+
+
 interface Login {
-  email: string;
+  username:string;
   password: string;
 }
 
 
-export const signup = async (data: Signup) => {
+export const signup = async (data: FormData) => {
   try {
-    const response = await axios_instance.post("/auth/signup", data);
-    console.log(response.data)
-    if (response.data.status === 200) return response.data.data;
+    const response = await axios_instance.post("/auth/signup", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response.status === 200) return response.data.data;
     else throw new Error("Signup failed");
   } catch (error) {
     throw error;
   }
 };
+
 
 export const login = async (data: Login) => {
   try {

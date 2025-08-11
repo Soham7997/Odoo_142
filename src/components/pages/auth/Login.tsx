@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,14 +24,13 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const userData = await login({ email, password });
+      const userData = await login({ username, password });
 
       if (!userData) {
         throw new Error("No user data received");
       }
 
       setUser(userData);
-
       navigate("/");
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || "Login failed");
@@ -53,16 +52,16 @@ export default function Login() {
         )}
 
         <div className="space-y-1">
-          <Label htmlFor="email" className="text-black">
-            Email
+          <Label htmlFor="username" className="text-black">
+            Username
           </Label>
           <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
-            autoComplete="email"
+            autoComplete="username"
             className="bg-white text-black"
           />
         </div>
