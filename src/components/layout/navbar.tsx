@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { User, ChevronDown, Settings, LogOut, Bell } from "lucide-react";
+import { User, ChevronDown, Settings, LogOut } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,8 +20,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-100"
-          : "bg-white/90 backdrop-blur-md"
+          ? "bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-slate-700/50"
+          : "bg-slate-900/90 backdrop-blur-xl shadow-lg"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,28 +53,19 @@ export default function Navbar() {
 
             {/* Company Name */}
             <div className="flex flex-col">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-blue-700 transition-all duration-300">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent group-hover:from-blue-100 group-hover:to-white transition-all duration-300">
                 GlobalTrotter
               </h1>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium -mt-1 opacity-90 group-hover:text-blue-600 transition-colors duration-300 hidden sm:block">
-                Travel Planner
-              </p>
             </div>
           </div>
 
           {/* Right side - User Profile Section */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            {/* Notification Bell */}
-            {/* <button className="relative p-2 text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200">
-              <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-            </button> */}
-
+          <div className="flex items-center">
             {/* User Profile Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center space-x-2 sm:space-x-3 p-2 hover:bg-slate-50 rounded-xl transition-all duration-200 group"
+                className="flex items-center space-x-2 sm:space-x-3 p-2 hover:bg-white/20 rounded-xl transition-all duration-200 group"
               >
                 {/* User Avatar */}
                 <div className="relative">
@@ -86,14 +77,14 @@ export default function Navbar() {
 
                 {/* User Info (hidden on mobile) */}
                 <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-sm font-semibold text-slate-800">
+                  <span className="text-sm font-semibold text-white">
                     John Doe
                   </span>
-                  <span className="text-xs text-slate-500">Premium Member</span>
+                  <span className="text-xs text-slate-300">Premium Member</span>
                 </div>
 
                 <ChevronDown
-                  className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${
+                  className={`h-4 w-4 text-slate-300 transition-transform duration-200 ${
                     showUserMenu ? "rotate-180" : ""
                   }`}
                 />
@@ -109,19 +100,19 @@ export default function Navbar() {
                     <p className="text-xs text-slate-500">Premium Member</p>
                   </div>
 
-                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors">
+                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50/80 transition-colors">
                     <User className="h-4 w-4" />
                     <span>Profile</span>
                   </button>
 
-                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors">
+                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50/80 transition-colors">
                     <Settings className="h-4 w-4" />
                     <span>Settings</span>
                   </button>
 
                   <hr className="my-2 border-slate-100" />
 
-                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                  <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50/80 transition-colors">
                     <LogOut className="h-4 w-4" />
                     <span>Sign Out</span>
                   </button>
